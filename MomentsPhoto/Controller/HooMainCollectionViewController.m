@@ -14,22 +14,20 @@
 #import "HooPhotoCell.h"
 #import "HooPhotoStreamCategory.h"
 #import "HooPhotoStreamCategoryList.h"
+#import "HooFeatureListViewController.h"
+#import "HooCategoryListViewController.h"
+#import "RESideMenu.h"
 
 
 static NSString * const reuseIdentifier = @"photoCell";
 static NSString * const kSegueIdentifierCategoryPopover = @"showCategoryList";
-@interface HooMainCollectionViewController ()
-@property (weak, nonatomic) IBOutlet FUISegmentedControl *featureSegmentControl;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *categoryBarButtonItem;
+@interface HooMainCollectionViewController ()<HooFeatureListViewControllerDelegate,HooCategoryListViewControllerDelegate>
 
 @property (nonatomic, weak) UIPopoverController *categoryListPopoverController;
 @property (nonatomic, strong, readonly)HooPhotoViewController *photoViewController;
 @property (nonatomic, strong)HooPhotoStream *photoStream;
 @property (nonatomic, strong, readonly) NSArray *photoStreamFeatures;
 @property (nonatomic,strong) HooPhotoStreamCategory *selectedCategory;
-
-- (IBAction)featureChanged:(id)sender;
-
 
 @end
 
@@ -65,7 +63,7 @@ static NSString * const kSegueIdentifierCategoryPopover = @"showCategoryList";
         NSInteger index = [[NSUserDefaults standardUserDefaults] integerForKey:@"selectedIndex"];
         HooPhotoStreamCategory *category = [[HooPhotoStreamCategoryList DefaultList] categoryAtIndex:index];
         _selectedCategory = category;
-        self.categoryBarButtonItem.title = category.title;
+        self.navigationItem.rightBarButtonItem.title = _selectedCategory.title;
     }
     return _selectedCategory;
 }
@@ -74,7 +72,6 @@ static NSString * const kSegueIdentifierCategoryPopover = @"showCategoryList";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-
     
     //解决iOS7 默认的View的起点在屏幕左上角带来的问题，这里的操作让它显示导航栏下
     if( ([[[UIDevice currentDevice] systemVersion] doubleValue]>=7.0)) {
@@ -84,67 +81,63 @@ static NSString * const kSegueIdentifierCategoryPopover = @"showCategoryList";
     }
     
     [self configureNavigationBar];
-    [self configureSegmentedControl];
     [self configureBarButtonItem];
-    [self addDismissPopoverGestureToNavigationBar];
+
     [self addSVPullToRefreshForViewController];
-}
-/*
- 当单击导航栏时，隐藏分类选择弹出控制器categoryListPopoverController
- */
-- (void)addDismissPopoverGestureToNavigationBar
-{
-    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissPopver:)];
-    tapGestureRecognizer.numberOfTapsRequired = 1;
-    [self.navigationController.navigationBar addGestureRecognizer:tapGestureRecognizer];
+    [self setupView];
 }
 
-- (void)dismissPopver:(UITapGestureRecognizer *)recognizer
+- (void)setupView
 {
-    [self.categoryListPopoverController dismissPopoverAnimated:YES];
+    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+     CGFloat itemWidth = (self.view.bounds.size.width - 4)/3;
+    flowLayout.itemSize = CGSizeMake(itemWidth, itemWidth);
+    flowLayout.minimumInteritemSpacing = 1.0;
+    flowLayout.sectionInset = UIEdgeInsetsMake(1.0, 1.0, 1.0, 1.0);
+    flowLayout.minimumLineSpacing = 1.0;
+    flowLayout.footerReferenceSize = CGSizeMake(self.collectionView.bounds.size.width, 100.0);
+    self.collectionView.collectionViewLayout = flowLayout;
 }
+
 
 #pragma mark - 定制视图样式
 
 - (void)configureNavigationBar
 {
     [self.navigationController.navigationBar configureFlatNavigationBarWithColor:[UIColor blackColor]];
-}
-
-- (void)configureSegmentedControl
-{
-    static const CGFloat kSegmentedControlWidth = 500.0f;
-    CGRect currentBounds = self.featureSegmentControl.bounds;
-    self.featureSegmentControl.bounds = CGRectMake(currentBounds.origin.x, currentBounds.origin.y, kSegmentedControlWidth, currentBounds.size.height);
-    self.featureSegmentControl.selectedFont = [UIFont systemFontOfSize:20.0f];
-    self.featureSegmentControl.selectedFontColor = [UIColor whiteColor];
-    self.featureSegmentControl.deselectedFont = [UIFont systemFontOfSize:20.0f];
-    self.featureSegmentControl.deselectedFontColor = [UIColor grayColor];
-    self.featureSegmentControl.selectedColor = [UIColor alizarinColor];
-    self.featureSegmentControl.highlightedColor = [UIColor pomegranateColor];
-    self.featureSegmentControl.deselectedColor = [UIColor clearColor];
-    self.featureSegmentControl.dividerColor = [UIColor clearColor];
-    self.featureSegmentControl.cornerRadius = 0.0f;
-    self.featureSegmentControl.apportionsSegmentWidthsByContent = YES;
-
-    
-}
-
-- (void)configureBarButtonItem
-{
-    [self.categoryBarButtonItem configureFlatButtonWithColor:[UIColor alizarinColor]
-                                            highlightedColor:[UIColor pomegranateColor]
-                                                cornerRadius:3.0f];
     NSShadow *shadow = [NSShadow new];
     [shadow setShadowColor: [UIColor clearColor]];
     [shadow setShadowOffset:CGSizeMake(0.0f, 0.0f)];
-    
     NSDictionary *textAttributes = @{NSFontAttributeName: [UIFont systemFontOfSize:16.0f],
                                      NSForegroundColorAttributeName: [UIColor whiteColor],
                                      NSShadowAttributeName:shadow};
-    //    NSDictionary *textAttributes = @{NSFontAttributeName:[UIFont systemFontOfSize:16.0f],NSForegroundColorAttributeName:[UIColor whiteColor],NSShadowAttributeName:[UIColor clearColor],NSShadowAttributeName:[NSValue valueWithUIOffset:UIOffsetMake(0.0f, 0.0f)]};
-    [self.categoryBarButtonItem setTitleTextAttributes:textAttributes
-                                              forState:UIControlStateNormal];
+    self.navigationController.navigationBar.titleTextAttributes = textAttributes;
+
+
+}
+
+
+- (void)configureBarButtonItem
+{
+    NSArray *itemArrray = @[self.navigationItem.leftBarButtonItem,self.navigationItem.rightBarButtonItem];
+    
+    for (UIBarButtonItem *item in itemArrray) {
+        [item configureFlatButtonWithColor:[UIColor alizarinColor]
+                          highlightedColor:[UIColor pomegranateColor]
+                              cornerRadius:3.0f];
+        NSShadow *shadow = [NSShadow new];
+        [shadow setShadowColor: [UIColor clearColor]];
+        [shadow setShadowOffset:CGSizeMake(0.0f, 0.0f)];
+        
+        NSDictionary *textAttributes = @{NSFontAttributeName: [UIFont systemFontOfSize:16.0f],
+                                         NSForegroundColorAttributeName: [UIColor whiteColor],
+                                         NSShadowAttributeName:shadow};
+        
+        [item setTitleTextAttributes:textAttributes
+                            forState:UIControlStateNormal];
+    }
+    
+
 }
 
 - (void)configurePopover
@@ -259,41 +252,34 @@ static NSString * const kSegueIdentifierCategoryPopover = @"showCategoryList";
 - (void)categoryListViewController:(HooCategoryListViewController *)categoryListViewController didSelectedCategory:(HooPhotoStreamCategory *)category
 {
     [self.categoryListPopoverController dismissPopoverAnimated:YES];
-    self.categoryBarButtonItem.title = category.title;
     [self reloadPhotoStreamFeature:self.photoStream.feature category:category.value];
+    self.navigationItem.rightBarButtonItem.title = category.title;
 }
-
-#pragma mark - Storyboard Segues
-
-- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
+#pragma mark - HooFeatureListViewController 代理
+- (void)featureListViewController:(HooFeatureListViewController *)featureListViewController didSelectedfeature:(NSInteger)featureIndex featureName:(NSString *)featureName
 {
-    if ([identifier isEqualToString:kSegueIdentifierCategoryPopover]) {
-        //如果存在HooCategoryListViewController我们就不弹出，而是隐藏它
-        if (self.categoryListPopoverController) {
-            [self.categoryListPopoverController dismissPopoverAnimated:YES];
-            return NO;
-        }
-    }
-    return YES;
-}
+    PXAPIHelperPhotoFeature selectedFeature = [self.photoStreamFeatures[featureIndex] integerValue];
+    
+    [self reloadPhotoStreamFeature:selectedFeature category:self.photoStream.category];
+    self.navigationItem.leftBarButtonItem.title = featureName;
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ([[segue identifier] isEqualToString:kSegueIdentifierCategoryPopover]) {
-        self.categoryListPopoverController = [(UIStoryboardPopoverSegue *)segue popoverController];
-        [self configurePopover];
-        HooCategoryListViewController *categoryListViewController = [segue destinationViewController];
-        categoryListViewController.delegate = self;
-    }
 }
 
 
 #pragma mark - IBAction
-
-- (IBAction)featureChanged:(id)sender {
-    NSInteger selectedSegmentIndex = [self.featureSegmentControl selectedSegmentIndex];
-    PXAPIHelperPhotoFeature selectedFeature = [self.photoStreamFeatures[selectedSegmentIndex] integerValue];
-    [self reloadPhotoStreamFeature:selectedFeature
-                          category:self.photoStream.category];
+- (IBAction)presentLeftMenuViewController:(id)sender
+{
+    [super presentLeftMenuViewController:sender];
+    HooFeatureListViewController *featureCtrl = (HooFeatureListViewController *)self.sideMenuViewController.leftMenuViewController;
+    featureCtrl.delegate = self;
 }
+
+- (IBAction)  presentRightMenuViewController:(id)sender
+{
+    [super presentRightMenuViewController:sender];
+    
+    HooCategoryListViewController *categoryCtrl = (HooCategoryListViewController *)self.sideMenuViewController.rightMenuViewController;
+    categoryCtrl.delegate = self;
+}
+
 @end

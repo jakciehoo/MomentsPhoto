@@ -12,11 +12,21 @@
 
 @implementation HooCategoryCell
 
+-(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    [self configureFlatCellWithColor:[UIColor clearColor] selectedColor:[UIColor peterRiverColor] roundingCorners:UIRectCornerAllCorners];
+    self.textLabel.textColor = [UIColor whiteColor];
+    self.textLabel.highlightedTextColor = [UIColor whiteColor];
+    self.textLabel.textAlignment = NSTextAlignmentCenter;
+    self.textLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:50];
+    self.backgroundColor = [UIColor clearColor];
+    return self;
+    
+}
 - (void)awakeFromNib {
     // Initialization code
-    [self configureFlatCellWithColor:[UIColor cloudsColor] selectedColor:[UIColor peterRiverColor] roundingCorners:UIRectCornerAllCorners];
-    self.textLabel.textColor = [UIColor blackColor];
-    self.textLabel.highlightedTextColor = [UIColor whiteColor];
+
 }
 
 - (void)setCategory:(HooPhotoStreamCategory *)category

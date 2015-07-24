@@ -16,11 +16,11 @@
 static NSTimeInterval const kResizeAnimationDuration = 0.5f;
 static NSTimeInterval const kPresentAndDismissAnimationDuration = 1.0f;
 static NSString * const kSegueIdentifierInfoPopover = @"showInfoPopover";
+static float const kAlphaValue = 0.8f;
 
 @interface HooPhotoViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
-@property (weak, nonatomic) IBOutlet UILabel *photoTitleLabel;
-@property (weak, nonatomic) IBOutlet UILabel *userFullNameLabel;
+
 @property (weak, nonatomic) IBOutlet UIView *dimView;
 @property (weak, nonatomic) IBOutlet UIView *contentView;
 
@@ -36,7 +36,7 @@ static NSString * const kSegueIdentifierInfoPopover = @"showInfoPopover";
 @property (nonatomic, strong) NSLayoutConstraint *leadingLayoutConstraint;
 
 @property (nonatomic, strong, readonly) UIPanGestureRecognizer *panToDismissGestureRecognizer;
-@property (nonatomic, strong, readonly) UITapGestureRecognizer *tapToDismissGestureRecognizer;
+@property (nonatomic, strong, readonly) UITapGestureRecognizer *doubleTapToShrinkGestureRecognizer;
 @property (nonatomic, strong, readonly) UITapGestureRecognizer *tapToHideToolViewGestureRecognizer;
 
 
@@ -49,10 +49,13 @@ static NSString * const kSegueIdentifierInfoPopover = @"showInfoPopover";
 
 @property (nonatomic, strong) MBProgressHUD *hud;
 
+@property (nonatomic, assign) BOOL isShowSmall;
+@property (nonatomic ,assign) BOOL isToolViewVisible;
+
 @end
 
 @implementation HooPhotoViewController
-@synthesize tapToDismissGestureRecognizer = _tapToDismissGestureRecognizer;
+@synthesize doubleTapToShrinkGestureRecognizer = _doubleTapToShrinkGestureRecognizer;
 @synthesize tapToHideToolViewGestureRecognizer = _tapToHideToolViewGestureRecognizer;
 @synthesize panToDismissGestureRecognizer = _panToDismissGestureRecognizer;
 
@@ -85,34 +88,14 @@ static NSString * const kSegueIdentifierInfoPopover = @"showInfoPopover";
         [self dismiss];
     }
 }
-#pragma mark - 单击退出
-//单击关闭此视图（HooPhotoViewController）
-- (UITapGestureRecognizer *)tapToDismissGestureRecognizer
-{
-    if (!_tapToDismissGestureRecognizer) {
-        _tapToDismissGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapToDismiss:)];
-        _tapToDismissGestureRecognizer.numberOfTapsRequired = 1;
-        
-        // So the user can still interact with controls in the view.
-        _tapToDismissGestureRecognizer.cancelsTouchesInView = NO;
-    }
-    return _tapToDismissGestureRecognizer;
-}
 
-- (void)handleTapToDismiss:(UITapGestureRecognizer *)sender
-{
-    if (UIGestureRecognizerStateRecognized == sender.state) {
-        [self.view removeGestureRecognizer:sender];
-        [self dismiss];
-    }
-}
-
+#pragma mark - 单击隐藏或显示toolView
 - (UITapGestureRecognizer *)tapToHideToolViewGestureRecognizer
 {
     if (!_tapToHideToolViewGestureRecognizer) {
         _tapToHideToolViewGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapToHideToolView:)];
         _tapToHideToolViewGestureRecognizer.numberOfTapsRequired = 1;
-        
+        [_tapToHideToolViewGestureRecognizer requireGestureRecognizerToFail:_doubleTapToShrinkGestureRecognizer];
         // So the user can still interact with controls in the view.
         _tapToHideToolViewGestureRecognizer.cancelsTouchesInView = NO;
     }
@@ -120,27 +103,66 @@ static NSString * const kSegueIdentifierInfoPopover = @"showInfoPopover";
 }
 - (void)handleTapToHideToolView:(UITapGestureRecognizer *)sender
 {
-    if (UIGestureRecognizerStateRecognized == sender.state && !self.tooView.hidden) {
-        [self.tooView removeGestureRecognizer:sender];
-        [UIView animateWithDuration:kPresentAndDismissAnimationDuration animations:^{
-            // Fade out the dim view and the content view.
-            self.tooView.alpha = 0.0f;
-        } completion:^(BOOL finished) {
-            //[self.tooView removeFromSuperview];
-            self.tooView.hidden = true;
+    
+
+            if(UIGestureRecognizerStateRecognized == sender.state && !_isShowSmall) {
+                [UIView animateWithDuration:kPresentAndDismissAnimationDuration animations:^{
+
+                    self.tooView.alpha = _isToolViewVisible ? 0.0 : kAlphaValue;
+                    _isToolViewVisible = !_isToolViewVisible;
+
+                }];
+            }
+
+}
+#pragma mark - 双击放大火缩小图片视图
+
+- (UITapGestureRecognizer *)doubleTapToShrinkGestureRecognizer
+{
+    if (!_doubleTapToShrinkGestureRecognizer) {
+        _doubleTapToShrinkGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapToShinkView:)];
+        _doubleTapToShrinkGestureRecognizer.numberOfTapsRequired = 2;
+        // So the user can still interact with controls in the view.
+        _doubleTapToShrinkGestureRecognizer.cancelsTouchesInView = NO;
+    }
+    return _doubleTapToShrinkGestureRecognizer;
+
+}
+
+- (void)handleTapToShinkView:(UITapGestureRecognizer *)doubleTap
+{
+    // 原始大小
+    CGSize photoSize = self.imageView.image.size;
+    
+    // 缩放后比率
+    CGFloat scaleFactor = [self scaleFactorToAspectFitPhotoWithSize:photoSize];
+    
+    // 缩放后的尺寸
+    CGSize scaledPhotoSize = CGSizeMake(floorf(photoSize.width * scaleFactor),
+                                        floorf(photoSize.height * scaleFactor));
+    if (!self.isShowSmall) {
+        self.contentViewWidthLayoutConstraint.constant = scaledPhotoSize.width;
+        self.contentViewHeightLayoutConstraint.constant = scaledPhotoSize.height;
+        self.isShowSmall = true;
+        
+        [UIView animateWithDuration:kResizeAnimationDuration animations:^{
+            [self.view layoutIfNeeded];
+            self.tooView.alpha = 0.0;
         }];
-    }else if(UIGestureRecognizerStateRecognized == sender.state && self.tooView.hidden) {
-        self.tooView.hidden = false;
-        [UIView animateWithDuration:kPresentAndDismissAnimationDuration animations:^{
-            // Fade out the dim view and the content view.
-            
-            self.tooView.alpha = 1.0f;
-        } completion:^(BOOL finished) {
-            //[self.tooView removeFromSuperview];
-            
+    }else{
+        self.contentViewWidthLayoutConstraint.constant = self.view.bounds.size.width;
+        self.contentViewHeightLayoutConstraint.constant = self.view.bounds.size.height;
+        self.isShowSmall = false;
+        
+        [UIView animateWithDuration:kResizeAnimationDuration animations:^{
+            [self.view layoutIfNeeded];
+            self.tooView.alpha = kAlphaValue;
         }];
     }
+
+
 }
+
 //加载视图到窗口中
 - (void)presentWithWindow:(UIWindow *)window photo:(HooPhoto *)photo sender:(UIView *)sender
 {
@@ -178,7 +200,7 @@ static NSString * const kSegueIdentifierInfoPopover = @"showInfoPopover";
         // Fade out the dim view and the content view.
         self.dimView.alpha = 0.0f;
         self.contentView.alpha = 0.0f;
-        
+        self.tooView.alpha = 0.0;
         // Tell the view to perform layout, so that constraints changes will be animated.
         [self.view layoutIfNeeded];
     } completion:^(BOOL finished) {
@@ -186,6 +208,7 @@ static NSString * const kSegueIdentifierInfoPopover = @"showInfoPopover";
         [self resetLayoutConstraints];
         
         [self.view removeFromSuperview];
+        
     }];
 }
 
@@ -196,7 +219,7 @@ static NSString * const kSegueIdentifierInfoPopover = @"showInfoPopover";
  */
 - (void)performPresentAnimation
 {
-    // Start animation layout constraints.
+    // 设置起始约束
     [self setPresentAnimationStartLayoutConstraints];
     
     // 立即改变视图的约束
@@ -219,8 +242,10 @@ static NSString * const kSegueIdentifierInfoPopover = @"showInfoPopover";
     } completion:^(BOOL finished) {
         // Add tap to dismiss gesture only after the animation is completed.
         // Otherwise, user can dismiss the view in the middle of an animation.
+        [self.view addGestureRecognizer:self.doubleTapToShrinkGestureRecognizer];
         [self.view addGestureRecognizer:self.panToDismissGestureRecognizer];
         [self.imageView addGestureRecognizer:self.tapToHideToolViewGestureRecognizer];
+        
         
         // First animation completed. Chain the second animation to
         // load and display photo.
@@ -284,10 +309,18 @@ static NSString * const kSegueIdentifierInfoPopover = @"showInfoPopover";
  */
 - (void)setPresentAnimationEndLayoutConstraints
 {
-    // Content view's default size before photo is loaded. It will be resized to
-    // aspect fit the photo when the photo has been loaded.
-    self.contentViewWidthLayoutConstraint.constant = 500.0f;
-    self.contentViewHeightLayoutConstraint.constant = 500.0f;
+
+    // 原始大小
+    CGSize photoSize = self.imageView.image.size;
+    
+    // 缩放后比率
+    CGFloat scaleFactor = [self scaleFactorToAspectFitPhotoWithSize:photoSize];
+    
+    // 缩放后的尺寸
+    CGSize scaledPhotoSize = CGSizeMake(floorf(photoSize.width * scaleFactor),
+                                        floorf(photoSize.height * scaleFactor));
+    self.contentViewWidthLayoutConstraint.constant = scaledPhotoSize.width;
+    self.contentViewHeightLayoutConstraint.constant = scaledPhotoSize.height;
     
     // Content view will be centered horizontally and vertically within its superview.
     [self.view removeConstraints:@[self.topLayoutConstraint,
@@ -358,9 +391,7 @@ static NSString * const kSegueIdentifierInfoPopover = @"showInfoPopover";
 // 显示小图
 - (void)displayThumbnail
 {
-    // Photo title and user's full name.
-    self.photoTitleLabel.text = nil;
-    self.userFullNameLabel.text = nil;
+
     
     UIImage *thumbnail = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:[self.photo.thumbnailURL absoluteString]];
     self.imageView.image = thumbnail;
@@ -432,16 +463,18 @@ static NSString * const kSegueIdentifierInfoPopover = @"showInfoPopover";
         // http://stackoverflow.com/a/12926646
         // http://stackoverflow.com/q/12622424
         
-        self.contentViewWidthLayoutConstraint.constant = scaledPhotoSize.width;
-        self.contentViewHeightLayoutConstraint.constant = scaledPhotoSize.height;
+        self.contentViewWidthLayoutConstraint.constant = self.view.bounds.size.width;
+        self.contentViewHeightLayoutConstraint.constant = self.view.bounds.size.height;
+         [UIView animateWithDuration:kResizeAnimationDuration animations:^{
+             [self.view layoutIfNeeded];
+             self.tooView.alpha = kAlphaValue;
+         }];
         
-        [UIView animateWithDuration:kResizeAnimationDuration animations:^{
-
-            [self.view layoutIfNeeded];
-        }];
     } else {
         self.contentViewWidthLayoutConstraint.constant = scaledPhotoSize.width;
         self.contentViewHeightLayoutConstraint.constant = scaledPhotoSize.height;
+        self.tooView.alpha = kAlphaValue;
+
     }
 
 }
@@ -486,7 +519,6 @@ static CGFloat const kViewToWindowPadding = 60.0f;
 - (void)image: (UIImage *) image didFinishSavingWithError: (NSError *) error
                                               contextInfo: (void *) contextInfo
 {
-    NSLog(@"test")
     NSString *msg = nil ;
     if(error != NULL){
         msg = @"保存图片失败" ;
@@ -501,7 +533,7 @@ static CGFloat const kViewToWindowPadding = 60.0f;
     [alert show];
     
 }
-
+#pragma mark 分享功能
 - (IBAction)sharePhoto:(UIButton *)sender {
 
     NSURL *imageUrl = self.photo.photoURL;

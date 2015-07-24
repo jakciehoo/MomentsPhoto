@@ -1,21 +1,9 @@
 
-/* Class = "UISegmentedControl"; K6O-eQ-yGo.segmentTitles[0] = "Popular"; ObjectID = "K6O-eQ-yGo"; */
-"K6O-eQ-yGo.segmentTitles[0]" = "高清美图";
+/* Class = "UINavigationItem"; title = "丁丁美图"; ObjectID = "4cT-3F-Z39"; */
+"4cT-3F-Z39.title" = "丁丁美图";
 
-/* Class = "UISegmentedControl"; K6O-eQ-yGo.segmentTitles[1] = "Editor's Choice"; ObjectID = "K6O-eQ-yGo"; */
-"K6O-eQ-yGo.segmentTitles[1]" = "来自推荐";
+/* Class = "UIBarButtonItem"; title = "All Category"; ObjectID = "BGK-1w-wex"; */
+"BGK-1w-wex.title" = "所有分类";
 
-/* Class = "UISegmentedControl"; K6O-eQ-yGo.segmentTitles[2] = "Upcoming"; ObjectID = "K6O-eQ-yGo"; */
-"K6O-eQ-yGo.segmentTitles[2]" = "最近";
-
-/* Class = "UISegmentedControl"; K6O-eQ-yGo.segmentTitles[3] = "Fresh"; ObjectID = "K6O-eQ-yGo"; */
-"K6O-eQ-yGo.segmentTitles[3]" = "最新";
-
-/* Class = "UIBarButtonItem"; title = "All Categories"; ObjectID = "Wmy-4d-D1r"; */
-"Wmy-4d-D1r.title" = "所有分类";
-
-/* Class = "UILabel"; text = "Photo Title"; ObjectID = "eM8-OC-7CV"; */
-"eM8-OC-7CV.text" = "标题";
-
-/* Class = "UILabel"; text = "User's Full Name"; ObjectID = "qIZ-C4-8GJ"; */
-"qIZ-C4-8GJ.text" = "用户名称";
+/* Class = "UIBarButtonItem"; title = "Popular"; ObjectID = "g9X-wH-MtZ"; */
+"g9X-wH-MtZ.title" = "高清美图";

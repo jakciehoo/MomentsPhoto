@@ -19,7 +19,9 @@
     // Do any additional setup after loading the view.
 
     self.userName.text = self.uName.length != 0 ? self.uName : @"不详";
+    [self.userName sizeToFit];
     self.photoTitle.text = self.pTitle.length != 0 ? self.pTitle : @"不详";
+    [self.photoTitle sizeToFit];
 }
 
 - (void)didReceiveMemoryWarning {

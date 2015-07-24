@@ -1,13 +1,31 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="7fK-DU-jBc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="0bp-KA-KEX">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
+        <!--Hoo Feature List View Controller-->
+        <scene sceneID="ijN-uL-XBo">
+            <objects>
+                <viewController storyboardIdentifier="leftMenuViewController" id="Wng-Ly-H1b" customClass="HooFeatureListViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="r6R-CX-wS4"/>
+                        <viewControllerLayoutGuide type="bottom" id="8Ha-Bz-RHS"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ljW-aI-7fh">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tWE-VX-Nat" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="459" y="-469"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="Oy1-Ti-u3c">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="7fK-DU-jBc" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="contentViewController" automaticallyAdjustsScrollViewInsets="NO" id="7fK-DU-jBc" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Dfn-Z6-V4e">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
@@ -15,41 +33,48 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="5mo-i1-VTw" kind="relationship" relationship="rootViewController" id="byf-dK-THa"/>
+                        <segue destination="5mo-i1-VTw" kind="relationship" relationship="rootViewController" id="jAj-Hn-Gsg"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dmY-Yt-b9U" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="541" y="551"/>
+            <point key="canvasLocation" x="422.65625" y="322.8515625"/>
         </scene>
         <!--Hoo Category List View Controller-->
-        <scene sceneID="7z9-N0-Che">
+        <scene sceneID="y8G-YG-LPV">
             <objects>
-                <tableViewController id="maR-CN-z4U" customClass="HooCategoryListViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="eKQ-cJ-hap">
-                        <rect key="frame" x="0.0" y="0.0" width="220" height="550"/>
+                <viewController storyboardIdentifier="rightMenuViewController" id="yaQ-tH-xaS" customClass="HooCategoryListViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="tTQ-NM-Vwy"/>
+                        <viewControllerLayoutGuide type="bottom" id="5rr-wa-6Nk"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ceD-WU-fHS">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CategoryCell" id="BfD-g2-uQO" customClass="HooCategoryCell">
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BfD-g2-uQO" id="wgO-L4-v4m">
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="maR-CN-z4U" id="Awy-zH-b6o"/>
-                            <outlet property="delegate" destination="maR-CN-z4U" id="NGQ-j1-xgk"/>
-                        </connections>
-                    </tableView>
-                    <nil key="simulatedStatusBarMetrics"/>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="220" height="550"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="qiO-jW-VgG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qfq-Co-wB2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2260" y="314"/>
+            <point key="canvasLocation" x="417" y="974"/>
+        </scene>
+        <!--Hoo View Controller-->
+        <scene sceneID="rSy-ig-0n1">
+            <objects>
+                <viewController id="0bp-KA-KEX" customClass="HooViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="0zk-UQ-tpW"/>
+                        <viewControllerLayoutGuide type="bottom" id="iaI-c6-3uk"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="gfT-V0-9iz">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tjb-gG-VQi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-278" y="327"/>
         </scene>
         <!--Hoo Photo View Controller-->
         <scene sceneID="Eed-hX-33K">
@@ -60,15 +85,15 @@
                         <viewControllerLayoutGuide type="bottom" id="3A0-LG-HNl"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="nsL-M9-dBU">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view alpha="0.59999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xo2-VX-LRp">
-                                <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rGW-UW-U8W">
-                                <rect key="frame" x="134" y="262" width="500" height="500"/>
+                                <rect key="frame" x="50" y="50" width="500" height="500"/>
                                 <subviews>
                                     <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GxF-Ol-gUh">
                                         <rect key="frame" x="0.0" y="0.0" width="500" height="500"/>
@@ -76,7 +101,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9bk-zc-3PP">
                                         <rect key="frame" x="0.0" y="400" width="500" height="100"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b3o-bI-9Ya">
+                                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b3o-bI-9Ya">
                                                 <rect key="frame" x="100" y="30" width="300" height="50"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nn0-MP-f52">
@@ -104,9 +129,6 @@
                                                         </state>
                                                         <connections>
                                                             <action selector="showInfo:" destination="Ctx-TC-Yge" eventType="touchUpInside" id="B3C-ji-2W9"/>
-                                                            <segue destination="gQo-Cq-n0o" kind="popover" identifier="showInfoPopover" popoverAnchorView="Sde-ws-ptL" id="LgC-5s-jst">
-                                                                <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                                            </segue>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -155,6 +177,7 @@
                             <constraint firstItem="Xo2-VX-LRp" firstAttribute="leading" secondItem="nsL-M9-dBU" secondAttribute="leading" id="gMP-Vo-56t"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="xYo-uq-DY8"/>
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="contentView" destination="rGW-UW-U8W" id="69A-6R-eSG"/>
@@ -169,65 +192,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cen-yo-I42" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2510" y="1385"/>
+            <point key="canvasLocation" x="1397" y="1009"/>
         </scene>
-        <!--Hoo Photo Info View Controller-->
-        <scene sceneID="Uys-qh-219">
-            <objects>
-                <viewController id="gQo-Cq-n0o" customClass="HooPhotoInfoViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Sh9-fZ-mCQ"/>
-                        <viewControllerLayoutGuide type="bottom" id="0qX-n9-ETL"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="usg-Pn-gPA">
-                        <rect key="frame" x="0.0" y="0.0" width="150" height="200"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="照片标题：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Okl-29-BdC">
-                                <rect key="frame" x="10" y="8" width="91" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text=" 作者：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q0B-if-wnV">
-                                <rect key="frame" x="10" y="105" width="91" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="User Name" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e2d-mw-IE6">
-                                <rect key="frame" x="30" y="134" width="104" height="36"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Photo Title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9CF-l2-oSY">
-                                <rect key="frame" x="30" y="37" width="104" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <nil key="simulatedStatusBarMetrics"/>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="150" height="200"/>
-                    <connections>
-                        <outlet property="photoTitle" destination="9CF-l2-oSY" id="uhK-Yz-2PJ"/>
-                        <outlet property="userName" destination="e2d-mw-IE6" id="d4Q-nT-USh"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="kmR-5x-Ulc" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3203" y="1617"/>
-        </scene>
-        <!--Hoo Main Collection View Controller-->
+        <!--MomentsPhoto-->
         <scene sceneID="Aft-bD-TVl">
             <objects>
-                <collectionViewController id="5mo-i1-VTw" customClass="HooMainCollectionViewController" sceneMemberID="viewController">
+                <collectionViewController storyboardIdentifier="HooMainCollectionViewController" id="5mo-i1-VTw" customClass="HooMainCollectionViewController" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="enS-sI-5UW">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="4" minimumInteritemSpacing="4" id="lUu-XH-JTD">
                             <size key="itemSize" width="250" height="250"/>
@@ -272,39 +244,22 @@
                             <outlet property="delegate" destination="5mo-i1-VTw" id="j8v-nR-tgD"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" id="4cT-3F-Z39">
-                        <barButtonItem key="leftBarButtonItem" width="500" id="tpm-yR-yK7">
-                            <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="K6O-eQ-yGo" customClass="FUISegmentedControl">
-                                <rect key="frame" x="20" y="7" width="500" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <segments>
-                                    <segment title="Popular"/>
-                                    <segment title="Editor's Choice"/>
-                                    <segment title="Upcoming"/>
-                                    <segment title="Fresh"/>
-                                </segments>
-                                <connections>
-                                    <action selector="featureChanged:" destination="5mo-i1-VTw" eventType="valueChanged" id="VYO-Wj-t9r"/>
-                                </connections>
-                            </segmentedControl>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="All Categories" id="Wmy-4d-D1r">
-                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    <navigationItem key="navigationItem" title="MomentsPhoto" id="4cT-3F-Z39">
+                        <barButtonItem key="leftBarButtonItem" title="Popular" id="g9X-wH-MtZ">
                             <connections>
-                                <segue destination="maR-CN-z4U" kind="popover" identifier="showCategoryList" popoverAnchorBarButtonItem="Wmy-4d-D1r" id="pRD-Fj-N8e">
-                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                </segue>
+                                <action selector="presentLeftMenuViewController:" destination="5mo-i1-VTw" id="Dte-kB-Ox9"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="All Category" id="BGK-1w-wex">
+                            <connections>
+                                <action selector="presentRightMenuViewController:" destination="5mo-i1-VTw" id="hnD-me-fEz"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <connections>
-                        <outlet property="categoryBarButtonItem" destination="Wmy-4d-D1r" id="0ZB-4x-Y5a"/>
-                        <outlet property="featureSegmentControl" destination="K6O-eQ-yGo" id="7Wv-1L-kJ4"/>
-                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DDO-BO-zjg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1707" y="559"/>
+            <point key="canvasLocation" x="1333.59375" y="327.5390625"/>
         </scene>
     </scenes>
     <resources>
@@ -312,9 +267,4 @@
         <image name="fbi_share" width="20" height="20"/>
         <image name="fbi_topics_flat" width="30" height="30"/>
     </resources>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination"/>
-    </simulatedMetricsContainer>
 </document>

@@ -15,6 +15,7 @@
 static NSString *resuseIdentifier = @"CategoryCell";
 
 @interface HooCategoryListViewController ()
+@property (nonatomic,strong)UITableView *tableView;
 
 @end
 
@@ -22,7 +23,22 @@ static NSString *resuseIdentifier = @"CategoryCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.tableView.backgroundColor = [UIColor cloudsColor];
+    
+    self.tableView = ({
+        UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, (self.view.frame.size.height - self.view.bounds.size.height/4 ) / 2.0f, self.view.frame.size.width, self.view.bounds.size.height/3) style:UITableViewStylePlain];
+        tableView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleWidth;
+        tableView.delegate = self;
+        tableView.dataSource = self;
+        //tableView.alpha = 0.5;
+        tableView.backgroundColor = [UIColor colorWithRed:213/255.0 green:92/255.0 blue:75/255.0 alpha:0.8];
+        tableView.backgroundView = nil;
+        tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        tableView.bounces = NO;
+        //[tableView registerClass:[HooCategoryCell class] forCellReuseIdentifier:resuseIdentifier];
+        tableView;
+    });
+    [self.view addSubview:_tableView];
+    self.view.backgroundColor = [UIColor clearColor];
     
 }
 
@@ -58,15 +74,15 @@ static NSString *resuseIdentifier = @"CategoryCell";
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    HooCategoryCell *cell = [tableView dequeueReusableCellWithIdentifier:resuseIdentifier forIndexPath:indexPath];
+    HooCategoryCell *cell = [tableView dequeueReusableCellWithIdentifier:resuseIdentifier];
+    
+    if (cell == nil) {
+        cell = [[HooCategoryCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:resuseIdentifier];
+    }
     
     HooPhotoStreamCategory *category = [[HooPhotoStreamCategoryList DefaultList] categoryAtIndex:indexPath.row];
     cell.category = category;
-    
-    if (category.isSelected) {
-        NSLog(@"%ld",(long)indexPath.row);
-    }
-    
+
     return cell;
 }
 

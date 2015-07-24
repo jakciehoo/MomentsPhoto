@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B86DAEA11B61C4EC00EAF6F2 /* RECommonFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = B86DAE9C1B61C4EC00EAF6F2 /* RECommonFunctions.m */; };
+		B86DAEA21B61C4EC00EAF6F2 /* RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = B86DAE9E1B61C4EC00EAF6F2 /* RESideMenu.m */; };
+		B86DAEA31B61C4EC00EAF6F2 /* UIViewController+RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = B86DAEA01B61C4EC00EAF6F2 /* UIViewController+RESideMenu.m */; };
+		B86DAEA61B61CF2100EAF6F2 /* HooViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B86DAEA51B61CF2100EAF6F2 /* HooViewController.m */; };
+		B86DAEA91B6211AB00EAF6F2 /* HooFeatureListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B86DAEA81B6211AB00EAF6F2 /* HooFeatureListViewController.m */; };
+		B897756D1B6139D600929F02 /* DescriptionBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = B897756C1B6139D600929F02 /* DescriptionBuilder.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		B8D381B41B57B7D100B20004 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B8D381B31B57B7D100B20004 /* main.m */; };
 		B8D381B71B57B7D100B20004 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B8D381B61B57B7D100B20004 /* AppDelegate.m */; };
 		B8D381BD1B57B7D100B20004 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8D381BB1B57B7D100B20004 /* Main.storyboard */; };
@@ -19,7 +25,6 @@
 		B8D390DA1B5A7C82006799B8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B8D390D81B5A7C82006799B8 /* Localizable.strings */; };
 		B8D390DD1B5AA175006799B8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B8D390DF1B5AA175006799B8 /* InfoPlist.strings */; };
 		B8D3D6001B58B20F00F27F79 /* HooPhotoStreamPage.m in Sources */ = {isa = PBXBuildFile; fileRef = B8D3D5FF1B58B20F00F27F79 /* HooPhotoStreamPage.m */; };
-		B8D3D6051B58BD6800F27F79 /* DescriptionBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = B8D3D6021B58BD6800F27F79 /* DescriptionBuilder.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		B8D3D6071B58C00B00F27F79 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8D3D6061B58C00B00F27F79 /* CoreGraphics.framework */; };
 		B8D3D6091B58C02000F27F79 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8D3D6081B58C02000F27F79 /* UIKit.framework */; };
 		B8D3D60B1B58C02A00F27F79 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8D3D60A1B58C02900F27F79 /* Foundation.framework */; };
@@ -85,6 +90,18 @@
 		2453D1B7D9F770B4C61FF2F7 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AC1D5E97DC83A2A453063C3 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		85F87DF3107D3B8E8FAB3183 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		B86DAE9B1B61C4EC00EAF6F2 /* RECommonFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RECommonFunctions.h; sourceTree = "<group>"; };
+		B86DAE9C1B61C4EC00EAF6F2 /* RECommonFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RECommonFunctions.m; sourceTree = "<group>"; };
+		B86DAE9D1B61C4EC00EAF6F2 /* RESideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RESideMenu.h; sourceTree = "<group>"; };
+		B86DAE9E1B61C4EC00EAF6F2 /* RESideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RESideMenu.m; sourceTree = "<group>"; };
+		B86DAE9F1B61C4EC00EAF6F2 /* UIViewController+RESideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+RESideMenu.h"; sourceTree = "<group>"; };
+		B86DAEA01B61C4EC00EAF6F2 /* UIViewController+RESideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+RESideMenu.m"; sourceTree = "<group>"; };
+		B86DAEA41B61CF2100EAF6F2 /* HooViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HooViewController.h; sourceTree = "<group>"; };
+		B86DAEA51B61CF2100EAF6F2 /* HooViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HooViewController.m; sourceTree = "<group>"; };
+		B86DAEA71B6211AB00EAF6F2 /* HooFeatureListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HooFeatureListViewController.h; sourceTree = "<group>"; };
+		B86DAEA81B6211AB00EAF6F2 /* HooFeatureListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HooFeatureListViewController.m; sourceTree = "<group>"; };
+		B897756B1B6139D600929F02 /* DescriptionBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DescriptionBuilder.h; sourceTree = "<group>"; };
+		B897756C1B6139D600929F02 /* DescriptionBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DescriptionBuilder.m; sourceTree = "<group>"; };
 		B8D381AE1B57B7D100B20004 /* MomentsPhoto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MomentsPhoto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8D381B21B57B7D100B20004 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B8D381B31B57B7D100B20004 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -104,13 +121,10 @@
 		B8D381E31B57CA9300B20004 /* HooPhotoStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HooPhotoStream.h; sourceTree = "<group>"; };
 		B8D381E41B57CA9300B20004 /* HooPhotoStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HooPhotoStream.m; sourceTree = "<group>"; };
 		B8D381E71B57D87E00B20004 /* MomentsPhoto-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MomentsPhoto-Prefix.pch"; sourceTree = "<group>"; };
-		B8D390D51B5A7053006799B8 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		B8D390D91B5A7C82006799B8 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		B8D390DE1B5AA175006799B8 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		B8D3D5FE1B58B20F00F27F79 /* HooPhotoStreamPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HooPhotoStreamPage.h; sourceTree = "<group>"; };
 		B8D3D5FF1B58B20F00F27F79 /* HooPhotoStreamPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HooPhotoStreamPage.m; sourceTree = "<group>"; };
-		B8D3D6011B58BD6800F27F79 /* DescriptionBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DescriptionBuilder.h; sourceTree = "<group>"; };
-		B8D3D6021B58BD6800F27F79 /* DescriptionBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DescriptionBuilder.m; sourceTree = "<group>"; };
 		B8D3D6061B58C00B00F27F79 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		B8D3D6081B58C02000F27F79 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B8D3D60A1B58C02900F27F79 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -136,6 +150,7 @@
 		B8D3E9D51B5CAA07008CB944 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		B8D417291B592D3300C8FEC0 /* HooCategoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HooCategoryCell.h; sourceTree = "<group>"; };
 		B8D4172A1B592D3300C8FEC0 /* HooCategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HooCategoryCell.m; sourceTree = "<group>"; };
+		B8E2D51B1B627B23005B9619 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		B8E516731B5DE31200238182 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		B8E516751B5DE33100238182 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		B8E516771B5DE33E00238182 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
@@ -262,6 +277,28 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		B86DAE9A1B61C4EC00EAF6F2 /* RESideMenu */ = {
+			isa = PBXGroup;
+			children = (
+				B86DAE9B1B61C4EC00EAF6F2 /* RECommonFunctions.h */,
+				B86DAE9C1B61C4EC00EAF6F2 /* RECommonFunctions.m */,
+				B86DAE9D1B61C4EC00EAF6F2 /* RESideMenu.h */,
+				B86DAE9E1B61C4EC00EAF6F2 /* RESideMenu.m */,
+				B86DAE9F1B61C4EC00EAF6F2 /* UIViewController+RESideMenu.h */,
+				B86DAEA01B61C4EC00EAF6F2 /* UIViewController+RESideMenu.m */,
+			);
+			path = RESideMenu;
+			sourceTree = "<group>";
+		};
+		B897756A1B6139D600929F02 /* DescriptionBuilder */ = {
+			isa = PBXGroup;
+			children = (
+				B897756B1B6139D600929F02 /* DescriptionBuilder.h */,
+				B897756C1B6139D600929F02 /* DescriptionBuilder.m */,
+			);
+			path = DescriptionBuilder;
+			sourceTree = "<group>";
+		};
 		B8D381A51B57B7D100B20004 = {
 			isa = PBXGroup;
 			children = (
@@ -336,8 +373,12 @@
 				B8D381DE1B57C93C00B20004 /* HooPhotoViewController.m */,
 				B8D3D6121B58E44E00F27F79 /* HooCategoryListViewController.h */,
 				B8D3D6131B58E44E00F27F79 /* HooCategoryListViewController.m */,
+				B86DAEA71B6211AB00EAF6F2 /* HooFeatureListViewController.h */,
+				B86DAEA81B6211AB00EAF6F2 /* HooFeatureListViewController.m */,
 				B8D3E9731B5CA178008CB944 /* HooPhotoInfoViewController.h */,
 				B8D3E9741B5CA178008CB944 /* HooPhotoInfoViewController.m */,
+				B86DAEA41B61CF2100EAF6F2 /* HooViewController.h */,
+				B86DAEA51B61CF2100EAF6F2 /* HooViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -370,20 +411,12 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		B8D3D6031B58BD6800F27F79 /* DescriptionBuilder */ = {
-			isa = PBXGroup;
-			children = (
-				B8D3D6011B58BD6800F27F79 /* DescriptionBuilder.h */,
-				B8D3D6021B58BD6800F27F79 /* DescriptionBuilder.m */,
-			);
-			path = DescriptionBuilder;
-			sourceTree = "<group>";
-		};
 		B8D3D6041B58BD6800F27F79 /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				B86DAE9A1B61C4EC00EAF6F2 /* RESideMenu */,
+				B897756A1B6139D600929F02 /* DescriptionBuilder */,
 				B8E516791B5E45EB00238182 /* ShareSDK */,
-				B8D3D6031B58BD6800F27F79 /* DescriptionBuilder */,
 			);
 			path = lib;
 			sourceTree = "<group>";
@@ -636,20 +669,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B86DAEA61B61CF2100EAF6F2 /* HooViewController.m in Sources */,
 				B8D3E9751B5CA178008CB944 /* HooPhotoInfoViewController.m in Sources */,
 				B8D3D6001B58B20F00F27F79 /* HooPhotoStreamPage.m in Sources */,
 				B8D3D6171B58FA9A00F27F79 /* HooPhotoCell.m in Sources */,
 				B8D381DF1B57C93C00B20004 /* HooPhotoViewController.m in Sources */,
 				B8D3D6141B58E44E00F27F79 /* HooCategoryListViewController.m in Sources */,
-				B8D3D6051B58BD6800F27F79 /* DescriptionBuilder.m in Sources */,
 				B8D381B71B57B7D100B20004 /* AppDelegate.m in Sources */,
 				B8D381DC1B57BE0C00B20004 /* HooMainCollectionViewController.m in Sources */,
+				B86DAEA11B61C4EC00EAF6F2 /* RECommonFunctions.m in Sources */,
 				B8D3D6111B58C91700F27F79 /* HooPhotoStreamCategoryList.m in Sources */,
+				B86DAEA91B6211AB00EAF6F2 /* HooFeatureListViewController.m in Sources */,
+				B86DAEA21B61C4EC00EAF6F2 /* RESideMenu.m in Sources */,
+				B897756D1B6139D600929F02 /* DescriptionBuilder.m in Sources */,
 				B8D381E51B57CA9300B20004 /* HooPhotoStream.m in Sources */,
 				B8D3D60E1B58C7F600F27F79 /* HooPhotoStreamCategory.m in Sources */,
 				B8D4172B1B592D3300C8FEC0 /* HooCategoryCell.m in Sources */,
 				B8D381B41B57B7D100B20004 /* main.m in Sources */,
 				B8D381E21B57C9CA00B20004 /* HooPhoto.m in Sources */,
+				B86DAEA31B61C4EC00EAF6F2 /* UIViewController+RESideMenu.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -676,7 +714,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				B8D381BC1B57B7D100B20004 /* Base */,
-				B8D390D51B5A7053006799B8 /* zh-Hans */,
+				B8E2D51B1B627B23005B9619 /* zh-Hans */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -821,6 +859,7 @@
 					"$(PROJECT_DIR)/lib/ShareSDK/Extend/WeChatSDK",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/**";
 			};
 			name = Debug;
@@ -855,6 +894,7 @@
 					"$(PROJECT_DIR)/lib/ShareSDK/Extend/WeChatSDK",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/**";
 			};
 			name = Release;

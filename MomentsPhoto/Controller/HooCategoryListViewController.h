@@ -15,7 +15,7 @@
 
 @end
 
-@interface HooCategoryListViewController : UITableViewController
+@interface HooCategoryListViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 
 @property (nonatomic,weak) id<HooCategoryListViewControllerDelegate> delegate;
 

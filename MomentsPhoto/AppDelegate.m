@@ -16,6 +16,7 @@
 #import "TencentOpenAPI/QQApiInterface.h"
 #import "QZoneConnection/ISSQZoneApp.h"
 #import "TencentOpenAPI/TencentOAuth.h"
+#import "RESideMenu.h"
 
 @implementation AppDelegate
 
