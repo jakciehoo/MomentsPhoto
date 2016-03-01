@@ -3,7 +3,7 @@
 //  MomentsPhoto
 // 此模型代表照片流中的一页，每页包含一定数量的照片集合。
 //  Created by HooJackie on 15/7/17.
-//  Copyright (c) 2015年 jackie. All rights reserved.
+//  Copyright (c) 2014年 jackie. All rights reserved.
 //
 
 @class HooPhoto;

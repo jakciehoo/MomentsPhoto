@@ -3,7 +3,7 @@
 //  MomentsPhoto
 //
 //  Created by HooJackie on 15/7/17.
-//  Copyright (c) 2015年 jackie. All rights reserved.
+//  Copyright (c) 2014年 jackie. All rights reserved.
 //
 
 #import "HooCategoryCell.h"
