@@ -60,7 +60,6 @@ static NSString *resuseIdentifier = @"CategoryCell";
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
     [[HooPhotoStreamCategoryList DefaultList] removeAllCategories];
 }
 

@@ -225,10 +225,8 @@ static float const kAlphaValue = 0.8f;
     // 立即改变视图的约束
     [self.view layoutIfNeeded];
     
-    // End animation layout constraints.
     [self setPresentAnimationEndLayoutConstraints];
     
-    // Dimming view and content view will have a fade-in animation.
     self.dimView.alpha = 0.0f;
     self.contentView.alpha = 0.0f;
     
@@ -237,18 +235,13 @@ static float const kAlphaValue = 0.8f;
         self.dimView.alpha = 0.6f;
         self.contentView.alpha = 1.0f;
         
-        // Tell the view to perform layout, so that constraints changes will be animated.
         [self.view layoutIfNeeded];
     } completion:^(BOOL finished) {
-        // Add tap to dismiss gesture only after the animation is completed.
-        // Otherwise, user can dismiss the view in the middle of an animation.
+
         [self.view addGestureRecognizer:self.doubleTapToShrinkGestureRecognizer];
         [self.view addGestureRecognizer:self.panToDismissGestureRecognizer];
         [self.imageView addGestureRecognizer:self.tapToHideToolViewGestureRecognizer];
         
-        
-        // First animation completed. Chain the second animation to
-        // load and display photo.
         [self displayPhoto];
     }];
 }
@@ -337,8 +330,7 @@ static float const kAlphaValue = 0.8f;
  */
 - (void)setDismissAnimationEndLayoutConstraints
 {
-    // The dismiss animation is the reverse of the present animation.
-    // So the start of the present animation is the end of the dismiss animation.
+
     [self setPresentAnimationStartLayoutConstraints];
 }
 
@@ -362,26 +354,22 @@ static float const kAlphaValue = 0.8f;
     [UIView animateWithDuration:kResizeAnimationDuration animations:^{
         [self synchronizeWithRootView];
         
-        // Resize view to aspect fit photo as rotation changes the view's bounds.
         [self sizeToAspectFitPhotoAnimated:NO];
         
-        // We need to re-layout the views, otherwise our views will be out of place.
+
         [self.view layoutIfNeeded];
     }];
 }
 #pragma mark - View Rotation Events
 
-// When the root view controller's view runs its rotation animation, we will also
-// match its rotation animation for a smoother transition.
+
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
     [UIView animateWithDuration:duration animations:^{
         [self synchronizeWithRootView];
         
-        // Resize view to aspect fit photo as rotation changes the view's bounds.
         [self sizeToAspectFitPhotoAnimated:NO];
         
-        // We need to re-layout the views, otherwise our views will be out of place.
         [self.view layoutIfNeeded];
     }];
 }
@@ -402,8 +390,7 @@ static float const kAlphaValue = 0.8f;
 {
     UIImage *photoImage = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:[self.photo.photoURL absoluteString]];
     
-    // If photo is in memory cache, we can just display the image immediately.
-    // Else we will have to load the photo in asynchronously.
+
     if (photoImage) {
         self.imageView.image = photoImage;
         [self sizeToAspectFitPhotoAnimated:YES];
@@ -412,16 +399,13 @@ static float const kAlphaValue = 0.8f;
     }
 }
 
-// Load the photo asynchronously and display it on the image view.
 - (void)loadPhoto
 {
     self.hud = [MBProgressHUD showHUDAddedTo:self.imageView animated:YES];
     
-    // We'll display the low resolution thumbnail as a placeholder while we
-    // load the larger size photo in the background.
+
     UIImage *thumbnail = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:[self.photo.thumbnailURL absoluteString]];
     
-    // Load image asynchronously from network or disk cache.
     [self.imageView sd_setImageWithURL:self.photo.photoURL placeholderImage:thumbnail options:0 completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType,NSURL *imageURL) {
         if (image) {
             if (self.hud != nil) {
@@ -490,8 +474,6 @@ static CGFloat const kViewToWindowPadding = 60.0f;
     // 视图大小
     CGSize viewSize = self.rootView.bounds.size;
     
-    // Include a padding space, so that scaled view will not be too close to
-    // the window's edge.
     CGSize photoWithPaddingSize = CGSizeMake(photoSize.width + kViewToWindowPadding,
                                              photoSize.height + kViewToWindowPadding);
     
