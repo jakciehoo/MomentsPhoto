@@ -17,7 +17,7 @@
 #import "HooFeatureListViewController.h"
 #import "HooCategoryListViewController.h"
 #import "RESideMenu.h"
-
+#import "UIPopoverController+FlatUI.h"
 
 static NSString * const reuseIdentifier = @"photoCell";
 static NSString * const kSegueIdentifierCategoryPopover = @"showCategoryList";

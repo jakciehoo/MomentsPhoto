@@ -1,0 +1,24 @@
+PODS:
+  - 500px-iOS-api (1.0.5)
+  - FlatUIKit (1.6.2)
+  - MBProgressHUD (0.9.2)
+  - SDWebImage (3.7.5):
+    - SDWebImage/Core (= 3.7.5)
+  - SDWebImage/Core (3.7.5)
+  - SVPullToRefresh (0.4.1)
+
+DEPENDENCIES:
+  - 500px-iOS-api (~> 1.0.3)
+  - FlatUIKit
+  - MBProgressHUD (~> 0.7)
+  - SDWebImage (~> 3.3)
+  - SVPullToRefresh (~> 0.4.1)
+
+SPEC CHECKSUMS:
+  500px-iOS-api: d9e46cb6300cef1a12964641374aa467d3cfb891
+  FlatUIKit: 1b41f0d4952ce8d970d8479ce79df54a960242c4
+  MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
+  SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
+  SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
+
+COCOAPODS: 0.39.0
