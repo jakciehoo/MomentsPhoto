@@ -2,8 +2,8 @@
 //  HooPhotoStreamPage.h
 //  MomentsPhoto
 // 照片流。用于显示到多个页面中，提高检索效率
-//  Created by HooJackie on 15/7/16.
-//  Copyright (c) 2015年 jackie. All rights reserved.
+//  Created by HooJackie on 14/7/16.
+//  Copyright (c) 2014年 jackie. All rights reserved.
 //
 
 #import <PXAPI.h>
