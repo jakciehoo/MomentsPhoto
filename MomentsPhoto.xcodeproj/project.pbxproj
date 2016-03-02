@@ -594,7 +594,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = Hoo;
-				LastUpgradeCheck = 0640;
+				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = jackie;
 				TargetAttributes = {
 					B8D381AD1B57B7D100B20004 = {
@@ -812,6 +812,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -902,6 +903,7 @@
 					"$(PROJECT_DIR)/lib/ShareSDK/Extend/TencentWeiboSDK",
 					"$(PROJECT_DIR)/lib/ShareSDK/Extend/WeChatSDK",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.jackiehoo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/**";
@@ -937,6 +939,7 @@
 					"$(PROJECT_DIR)/lib/ShareSDK/Extend/TencentWeiboSDK",
 					"$(PROJECT_DIR)/lib/ShareSDK/Extend/WeChatSDK",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.jackiehoo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/**";
@@ -959,6 +962,7 @@
 				);
 				INFOPLIST_FILE = MomentsPhotoTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "jackiehoo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MomentsPhoto.app/MomentsPhoto";
 			};
@@ -976,6 +980,7 @@
 				GCC_PREFIX_HEADER = "$(SRCROOT)/MomentsPhoto/MomentsPhoto-Prefix.pch";
 				INFOPLIST_FILE = MomentsPhotoTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "jackiehoo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MomentsPhoto.app/MomentsPhoto";
 			};
